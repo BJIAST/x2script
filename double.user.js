@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSGODouble withdraw script
 // @namespace    http://tampermonkey.net/
-// @version      0.0002
+// @version      0.0002a
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -110,7 +110,7 @@
             $('#resetFilter')['on']('click', resetFilter);
 
             // sort by price
-            timetoreload();
+            // timetoreload();
         });
 
     }
