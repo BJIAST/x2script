@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSGODouble withdraw script
 // @namespace    http://tampermonkey.net/
-// @version      0.0002a
+// @version      0.0003
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
