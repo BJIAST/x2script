@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSGODouble withdraw script
 // @namespace    http://tampermonkey.net/
-// @version      0.0003
+// @version      0.0004
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -10,6 +10,7 @@
 (function () {
     'use strict';
     var name = $(".dropdown a b").html();
+    // inlineAlert = $('#inlineAlert');
 
 
     function htmlwriter() {
@@ -48,8 +49,8 @@
         });
         $(".form-filter ul li a").css({
             "width" : "120px"
-            
-        }); 
+
+        });
     }
 
     function filterByCoins() {
@@ -69,24 +70,21 @@
 
     function timetoreload() {
         var countdown = $('.alert-danger b'),
-            timer;
+           timer;
 
         function startCountdown() {
             var startFrom = 150;
 
             timer = setInterval(function () {
-                countdown.text("Перегружать базу можно через " + --startFrom + " секунд");
+                countdown.html("<i class='fa fa-exclamation-triangle'></i>" + "Перегружать базу можно через " + --startFrom + " секунд");
                 if (startFrom <= 0) {
                     clearInterval(timer);
-                    if (confirm('Перегрузить страницу:')) {
-                        setInterval(function () {
-                            location.reload();
-                        }, 1000);
-                    }
+                    countdown.html("<i class='fa fa-exclamation-triangle'></i>" + "База устарела. Стоит <a href='' onclick='window.location.reload();' id='reloadPage'>перезагрузить</a>!");
                 }
             }, 1000);
         }
         startCountdown();
+
     }
 
     function resetFilter() {
