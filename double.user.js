@@ -501,6 +501,7 @@ if (site == "http://www.csgodouble.com/withdraw.php") {
                 },
                 App = window['App'] = {},
                 LoadedItems = [],
+                ItemsPerBot = {},
                 sound=new Audio('sounds/rolling.wav');
             sound.volume=0.4;
 
