@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chroma3 giving
 // @namespace    http://tampermonkey.net/
-// @version      0.000001
+// @version      0.000002
 // @description  When life gives you lemons, don't make lemonade! Make life take the lemons back!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -13,8 +13,8 @@
 var settings = {
     redefine_functions: true,
 
-    min:         1   * 688,
-    max:         1  * 689,
+    min:         1   * 648,
+    max:         1  * 649,
     ItemsToGrab: 32,
     max_diff   : -600,
 
@@ -517,7 +517,7 @@ function CountItemsPerBot(bot){
 
 
 function DrawSettingsPanel(){
-    $('body').append("<div id='SettingsPanel' style='z-index:999;position:fixed;width:100px;height:400px;top:0;color:black;'>" +
+    $('body').append("<div id='SettingsPanel' style='z-index:2000;position:fixed;width:100px;height:400px;top:0;color:black; border:2px solid; background:#fefefe;'>" +
                      "<span onClick='App.DisplayAllItems()'>Показать все шмотки</span><br>"+
                      // "<span onClick='App.GetJSON()'>Get items JSON</span>"+
                      // "<textarea id='JSONPrompt'></textarea>" +
