@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         CSGODouble withdraw script
 // @namespace    http://tampermonkey.net/
-// @version      0.0022
+// @version      0.0023
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
-// @match       https://steamcommunity.com/trade/*
+// @match       https://steamcommunity.com/tradeoffer/*
 // @grant        none
 // ==/UserScript==
 
@@ -706,7 +706,7 @@ if (site == "http://www.csgodouble.com/withdraw.php") {
 
                                     if(passed_filter > 0) DoAfter(data.balance);
 
-                                    $('.text-center>div:first>div:first>b').html("Перегружать можно через: <span id='cmd'>150</span> секунд");
+                                    $('.text-center>div:first>div:first>b').html("<a>Перегружать можно через: <span id='cmd'>150</span> секунд");
                                     cmd();
                                     $('#filterBtn')['on']('click', filterByCoins);
                                     $('#resetFilter')['on']('click', resetFilter);
