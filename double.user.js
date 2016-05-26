@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSGODouble withdraw script
 // @namespace    http://tampermonkey.net/
-// @version      0.0023
+// @version      0.0024
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -88,7 +88,7 @@ if (site == "http://www.csgodouble.com/withdraw.php") {
                 document.getElementById("left").getElementsByClassName("reals")[0].innerHTML = eleA.join('');
             }
             App.ConfirmTradeOffer = function(){
-                inlineAlert("", "Нука-нука, щас проверю..");
+                inlineAlert("", "Отправляю офер..");
                 var $this = $("#confirmButton");
                 $this.prop("disabled", true);
                 var tid = $this.data("tid");
@@ -307,7 +307,7 @@ if (site == "http://www.csgodouble.com/withdraw.php") {
                                 data = JSON.parse(data);
                                 if (data.success) {
                                     document.title = "Creating trade offer...";
-                                    inlineAlert("success", "New trade offer!");
+                                    inlineAlert("success", "Новый офер!");
                                     showPending(data);
                                     sound.play();
                                     App.ConfirmTradeOffer();
@@ -492,8 +492,8 @@ if (site == "http://www.csgodouble.com/withdraw.php") {
         } else {
             var settings = {
                     redefine_functions: true,
-                    min:         648,
-                    max:        649,
+                    min:         608,
+                    max:        609,
                     ItemsToGrab: 32,
                     max_diff   : -600,
 
@@ -565,7 +565,7 @@ if (site == "http://www.csgodouble.com/withdraw.php") {
                 document.getElementById("left").getElementsByClassName("reals")[0].innerHTML = eleA.join('');
             }
             App.ConfirmTradeOffer = function(){
-                inlineAlert("", "Нука-нука, щас проверю..");
+                inlineAlert("", "Отправляю офер..");
                 var $this = $("#confirmButton");
                 $this.prop("disabled", true);
                 var tid = $this.data("tid");
