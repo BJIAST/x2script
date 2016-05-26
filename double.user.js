@@ -492,6 +492,10 @@ if (site == "http://www.csgodouble.com/withdraw.php") {
         } else {
             var settings = {
                     redefine_functions: true,
+                    min:         648,
+                    max:        649,
+                    ItemsToGrab: 32,
+                    max_diff   : -600,
 
                     regex_pattern: /eSports 2013|DreamHack 2014|Access Pass|Cluj-Napoca|autograph capsule|esports key|case key|cologne|operation wildfire case|weapon case/i
                 },
