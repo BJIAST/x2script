@@ -489,7 +489,7 @@ function CountItemsPerBot(bot){
             display: 'inline-block'
         })
     }
-    function filter_root () {
+    function filter_root() {
         $(".price-filter").append("<div class='form-filter'>from <input type='text' id='filterCoinsFrom' class='form-control'> to <input type='text' id='filterCoinsTo' class='form-control'><ul><li><a id='filterBtn' class='btn btn-warning'>Отфильтровать</a></li><li><a id='resetFilter' class='btn btn-danger'>Сбросить</a></li></ul>");
            $(".price-filter").css({
             "padding": "20px 0",
