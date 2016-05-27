@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://tampermonkey.net/
-// @version      0.0026
+// @version      0.0030
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -12,15 +12,223 @@
 
 //Global settings
 
-var site = location.href;
+var site = location.href,
+    script = $("#changescript"),
+    soundmes = new Audio('sounds/tone.wav'),
+    minutes,
+    seconds,
+    timer;
+soundmes.volume = 0.75;
+
+
 $("body").append("<p><input id='changescript' type='checkbox'><label for='#changescript'>Хочу забрать кейсы</label></p>");
 $("body:first>p").css({
     "position": "absolute",
     "top" : "9.2%",
     "left" : "45%"
 })
-var script = $("#changescript");
 
+function showlogs(logmes){
+    $(".logmessage").remove();
+    $("body").append("<div class='fa fa-warning logmessage'><span>" + " " + logmes + "</span></div>");
+    $(".logmessage").css({
+        "position" : "fixed",
+        "bottom" : "20px",
+        "right" : "10px",
+        "font-size" : "16px",
+        "padding": "10px 29px 8px 40px",
+        "border": "1px solid #026194",
+        "border-radius": "10px",
+        "-moz-border-radius": "10px",
+        "-webkit-border-radius": "10px",
+        "box-shadow": "2px 2px 3px #bbb",
+        "-moz-box-shadow": "2px 2px 3px #bbb",
+        "-webkit-box-shadow": "2px 2px 3px #bbb",
+        "background": "#fff 15px 50% no-repeat",
+        "text-align":"justify",
+        "color": "#000"
+    })
+    $(".logmessage").fadeIn(300).delay(4500).fadeToggle(300);
+}
+
+
+function startTimerBotUpdating() {
+    date = new Date();
+    minutes = date.getMinutes();
+    seconds = date.getSeconds();
+    console.log("Сейчас " + minutes + " минут " + seconds + " секунд");
+    seconds = 60 - seconds;
+    console.log("Жду " + seconds + " секунд до отсчета");
+    setTimeout(function(){
+        var  messeconds = seconds -5;
+        showlogs("Жду " + messeconds + " секунд до отсчета времени");
+    },5000);
+    setTimeout(function(){
+        date = new Date();
+        minutes = date.getMinutes();
+        console.log("Сейчас " + minutes + " минут ");
+        switch(minutes) {
+            case 0:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 4:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 5:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 9:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 10:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+
+            case 14:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 15:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 19:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 20:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 24:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 25:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 29:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 30:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 34:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 35:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 39:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 40:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 44:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 45:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 49:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 50:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+                break;
+            case 54:
+                showlogs("Одна минута до залива скинов!");
+                break;
+            case 55:
+                soundmes.play();
+                showlogs("На сервере обновился бот!");
+
+                break;
+                defautl :
+                    break;
+
+        };
+        setInterval(function () {
+            date = new Date();
+            minutes = date.getMinutes();
+            console.log("Сейчас " + minutes + " минут ");
+            switch(minutes) {
+                case 0:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+                    break;
+                case 5:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 10:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 15:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 20:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 25:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 30:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 35:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 40:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 45:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 50:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                case 55:
+                    soundmes.play();
+                    showlogs("На сервере обновился бот!");
+
+                    break;
+                    defautl :
+                        break;
+
+            };
+        },60000);
+    },seconds*1000);
+
+}
+
+//Global settings
 
 function standartBot() {
     var settings = {
@@ -43,7 +251,7 @@ function standartBot() {
             delete(this.botid);
         });
         Output = JSON.stringify(Output);
-//window.prompt("Copy to clipboard: Ctrl+C, Enter", Output);
+        //window.prompt("Copy to clipboard: Ctrl+C, Enter", Output);
         $('#JSONPrompt').val(Output);
     }
     App.DisplayAllItems = function(){
@@ -109,9 +317,12 @@ function standartBot() {
                     if (data.success) {
                         if (data.action == "accept") {
                             inlineAlert("success", data.result);
+                            showlogs("Успешно", data.result);
                             document.title = "SUCCESS!"
                         } else {
                             inlineAlert("cross", data.result);
+                            showlogs("cross", data.result);
+
                             document.title = "REFUND!"
                         }
                         $("#offerPanel").slideUp();
@@ -234,6 +445,7 @@ function standartBot() {
                                 inlineAlert("success", "Загрузил " + count + " available items from cache - <a href=\"javascript:loadLeft('nocache')\">обновить`</a>");
                             } else {
                                 inlineAlert("success", "Загрузил: " + count + " предметов");
+
                                 console.log("Loaded items: " + count);
                             }
                         } else {
@@ -1050,29 +1262,37 @@ $(document).ready(function(){
         if (site == "http://www.csgodouble.com/withdraw.php") {
             standartBot();
             console.log("Загружен стандартный бот");
+            showlogs("Загружен стандартный бот");
+            startTimerBotUpdating();
             $(script).change(function() {
                 if (this.checked) {
                     chromaBot();
                     console.log("Загружен хрома бот");
+                    showlogs("Загружен хрома бот");
+
                 } else {
                     $("#SettingsPanel").remove();
                     standartBot();
                     console.log("Загружен стандартный бот");
+                    showlogs("Загружен стандартный бот");
+
 
                 }
             })
+
         }
-        else {
-            $(document).ready(function(){
-                function acceptSteamTrade() {
-                    $('div')['is']('#you_notready') ? $('#their_slot_0')['hasClass']('has_item') && !$('#your_slot_0')['hasClass']('has_item') && setInterval(function () {
-                        settings['autoaccepttrade'] && ('display: none;' != $('#you_notready')['attr']('style') ? ($('#you_notready')['click'](), $('.newmodal_buttons > .btn_green_white_innerfade')['click']()) : $('#trade_confirmbtn')['click']())
-                    }, 2E3) : $('div')['is']('.received_items_header') && window['close']()
-                }
-                acceptSteamTrade();
-            })
-        }
+        // else {
+        //     $(document).ready(function(){
+        //         function acceptSteamTrade() {
+        //             $('div')['is']('#you_notready') ? $('#their_slot_0')['hasClass']('has_item') && !$('#your_slot_0')['hasClass']('has_item') && setInterval(function () {
+        //                 settings['autoaccepttrade'] && ('display: none;' != $('#you_notready')['attr']('style') ? ($('#you_notready')['click'](), $('.newmodal_buttons > .btn_green_white_innerfade')['click']()) : $('#trade_confirmbtn')['click']())
+        //             }, 2E3) : $('div')['is']('.received_items_header') && window['close']()
+        //         }
+        //         acceptSteamTrade();
+        //     })
+        // }
     }
     loadscript();
-})
+
+});
 
