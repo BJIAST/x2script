@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://tampermonkey.net/
-// @version      0.0030
+// @version      0.0031
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -12,6 +12,13 @@
 
 //Global settings
 
+$("body").append("<p><input id='changescript' type='checkbox'><label for='#changescript'>Хочу забрать кейсы</label></p>");
+$("body:first>p").css({
+    "position": "absolute",
+    "top" : "9.2%",
+    "left" : "45%"
+});
+
 var site = location.href,
     script = $("#changescript"),
     soundmes = new Audio('sounds/tone.wav'),
@@ -21,12 +28,6 @@ var site = location.href,
 soundmes.volume = 0.75;
 
 
-$("body").append("<p><input id='changescript' type='checkbox'><label for='#changescript'>Хочу забрать кейсы</label></p>");
-$("body:first>p").css({
-    "position": "absolute",
-    "top" : "9.2%",
-    "left" : "45%"
-})
 
 function showlogs(logmes){
     $(".logmessage").remove();
@@ -1294,5 +1295,5 @@ $(document).ready(function(){
     }
     loadscript();
 
-});
+})
 
