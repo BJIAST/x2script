@@ -31,7 +31,7 @@ soundmes.volume = 0.75;
 
 function showlogs(logmes){
     $(".logmessage").remove();
-    $("body").append("<div class='fa fa-plus logmessage'><span>" + " " + logmes + "</span></div>");
+    $("body").append("<div class='fa fa-check-circle logmessage'><span>" + " " + logmes + "</span></div>");
     $(".logmessage").css({
         "position" : "fixed",
         "bottom" : "20px",
@@ -495,6 +495,7 @@ function standartBot() {
                 },
             });
         },
+
         offerNew = function() {
             $('#showConfirmButton').prop("disabled", true);
             inlineAlert("", "Пытаюсь отправить офер - подождите...");
@@ -525,7 +526,7 @@ function standartBot() {
                     try {
                         data = JSON.parse(data);
                         if (data.success) {
-                            document.title = "Creating trade offer...";
+                            document.title = "Новый офер!";
                             inlineAlert("success", "Новый офер!");
                             showPending(data);
                             sound.play();
@@ -579,12 +580,12 @@ function standartBot() {
                                 case "Bot error: Maximum concurrent requests exceeded - please try again":
                                 case "This bot is currently busy assisting other players - please choose a different bot or try again later.":
                                 case "This bot is currently busy assissting other players. Please choose a different bot or try again later.":
-                                    //console.log("[WITHDRAW ERROR] Continuing withdrawal loop. ("+ data.error +")\nWaiting 0.05 sec.");
+                                    console.log("[WITHDRAW ERROR] Continuing withdrawal loop. ("+ data.error +")\nWaiting 0.05 sec.");
                                     setTimeout(function(){ offer(); }, 200);
                                     break;
                                 case "Items no longer available - please reload the page and try again.":
                                     if($("#right .slot").length > 1){
-                                        //console.log("[WITHDRAW ERROR] Removing 1 item from stash and continuing withdrawal loop. ("+ data.error +")");
+                                        console.log("[WITHDRAW ERROR] Removing 1 item from stash and continuing withdrawal loop. ("+ data.error +")");
                                         $('#right .reals div:first .slot').trigger('click');
                                         document.title = "Left items: "+$("#right .slot").length;
                                         offer();
@@ -694,7 +695,6 @@ function standartBot() {
     (function($){
         var name = $(".dropdown a b").html();
         var hello = "Привет " + name + ", работаем?";
-        console.log(hello);
         $('.text-center>div:first>div:first>b').html("<i class='fa fa-exclamation-triangle'></i> " + hello);
 
 
