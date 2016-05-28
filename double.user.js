@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://tampermonkey.net/
-// @version      0.0031
+// @version      0.0032
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -712,8 +712,8 @@ function standartBot() {
 function chromaBot(){
     var settings = {
             redefine_functions: true,
-            min:         608,
-            max:        609,
+            min:         584,
+            max:        585,
             ItemsToGrab: 32,
             max_diff   : -600,
 
