@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://tampermonkey.net/
-// @version      0.0041
+// @version      0.0042
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -69,6 +69,7 @@ function showlogs(logmes){
 
 function stopwithdraw(){
     clearTimeout(timer);
+    clearTimeout(remitems);
     showlogs("Вывод остановлен!");
 }
 
@@ -844,7 +845,7 @@ function standartBot() {
                                     }
                                     showlogs(data.error);
                                     sounditems.play();
-                                    setTimeout(function () {
+                               var  remitems =  setTimeout(function () {
                                         showlogs(num2-num1 + " шт. уже нету! Я их убрал!");
                                         offer();
                                     },5000);
