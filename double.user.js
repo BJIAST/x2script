@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://tampermonkey.net/
-// @version      0.0032
+// @version      0.0033
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -31,7 +31,7 @@ soundmes.volume = 0.75;
 
 function showlogs(logmes){
     $(".logmessage").remove();
-    $("body").append("<div class='fa fa-warning logmessage'><span>" + " " + logmes + "</span></div>");
+    $("body").append("<div class='fa fa-plus logmessage'><span>" + " " + logmes + "</span></div>");
     $(".logmessage").css({
         "position" : "fixed",
         "bottom" : "20px",
@@ -45,7 +45,7 @@ function showlogs(logmes){
         "box-shadow": "2px 2px 3px #bbb",
         "-moz-box-shadow": "2px 2px 3px #bbb",
         "-webkit-box-shadow": "2px 2px 3px #bbb",
-        "background": "#fff 15px 50% no-repeat",
+        "background": "#fff",
         "text-align":"justify",
         "color": "#000"
     })
@@ -242,19 +242,19 @@ function standartBot() {
         sound=new Audio('sounds/rolling.wav');
     sound.volume=0.4;
 
-    App.GetJSON = function(){
-        var Output = LoadedItems;
-        $.each(Output, function(){
-            delete(this.assetid);
-            delete(this.img);
-            delete(this.reject);
-            delete(this.view);
-            delete(this.botid);
-        });
-        Output = JSON.stringify(Output);
-        //window.prompt("Copy to clipboard: Ctrl+C, Enter", Output);
-        $('#JSONPrompt').val(Output);
-    }
+    // App.GetJSON = function(){
+    //     var Output = LoadedItems;
+    //     $.each(Output, function(){
+    //         delete(this.assetid);
+    //         delete(this.img);
+    //         delete(this.reject);
+    //         delete(this.view);
+    //         delete(this.botid);
+    //     });
+    //     Output = JSON.stringify(Output);
+    //     //window.prompt("Copy to clipboard: Ctrl+C, Enter", Output);
+    //     $('#JSONPrompt').val(Output);
+    // }
     App.DisplayAllItems = function(){
         $("#left .reals").empty();
         $("#right .reals").empty();
@@ -303,6 +303,7 @@ function standartBot() {
     }
     App.ConfirmTradeOffer = function(){
         inlineAlert("", "Отправляю офер..");
+        showlogs("Отправляю офер..");
         var $this = $("#confirmButton");
         $this.prop("disabled", true);
         var tid = $this.data("tid");
@@ -496,7 +497,7 @@ function standartBot() {
         },
         offerNew = function() {
             $('#showConfirmButton').prop("disabled", true);
-            inlineAlert("", "Processing trade offer - please wait...");
+            inlineAlert("", "Пытаюсь отправить офер - подождите...");
             $("#confirmModal").modal("hide");
             var csv = "";
             var sum = 0;
