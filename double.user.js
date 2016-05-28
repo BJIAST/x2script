@@ -12,20 +12,26 @@
 
 //Global settings
 
-$("body").append("<p><input id='changescript' type='checkbox'><label for='#changescript'>Хочу забрать кейсы</label></p>");
-$("body:first>p").css({
-    "position": "absolute",
-    "top" : "9.2%",
-    "left" : "45%"
+// $("body").append("<p><input id='changescript' type='checkbox'><label for='#changescript'>Хочу забрать кейсы</label></p>");
+// $("body:first>p").css({
+//     "position": "absolute",
+//     "top" : "9.2%",
+//     "left" : "45%"
+// });
+$('.navbar-right').prepend("<li><button id='changescript' class='btn btn-warning'>Chroma3 Бот</button></li>");
+$('.navbar-right li').css({
+    "display" : "inline-block"
+});
+$("#changescript").css({
+    "height" : "50px"
 });
 
 
-// $(".panel-body").prepend("<button class='btn stopbtn btn-primary btn-lg' onclick='stopwithdraw()' style='width:30%;height:62px;word-wrap: break-word;font-size:14px'>Остановить бота</button>");
+$(".fw-4 .panel-body").prepend("<button class='btn stopbtn btn-primary btn-lg' onclick='stopwithdraw()' style='width:30%;height:62px;word-wrap: break-word;font-size:14px'>Остановить бота</button>");
 $("#showConfirmButton").html("Запустить вывод<div style='font-size:12px'><span id='sum'>0</span> кредитов | Баланс: <span id='avail'>0</span></div>");
 $("#showConfirmButton").css({
     "width":"69%"
 });
-$(".fw6 .panel-body .stopbtn").remove();
 
 var site = location.href,
     script = $("#changescript"),
@@ -38,6 +44,7 @@ soundmes.volume = 0.75;
 
 
 function showlogs(logmes){
+    $(".logmessage").remove();
     $("body").append("<div class='fa fa-check-circle logmessage'><span>" + " " + logmes + "</span></div>");
     $(".logmessage").css({
         "position" : "fixed",
@@ -55,21 +62,8 @@ function showlogs(logmes){
         "background": "#fff",
         "text-align":"justify",
         "color": "#000"
-    })
-    var newmes = $(".logmessage");
-    if (newmes.length > 1){
-        var sum = newmes.length;
-        var pos = sum*20;
-        newclass = newmes.addClass("mes"+sum);
-        newmes = $(".logmessage") + newclass;
-        $(".mes"+sum).css({
-            "bottom":pos+"px"
-        });
-    }
+    });
     $(".logmessage").fadeIn(300).delay(4500).fadeToggle(300);
-    setTimeout(function () {
-        $(".logmessage").remove();
-    },4900);
 }
 
 function stopwithdraw(){
@@ -322,6 +316,7 @@ function standartBot() {
                             case "Attempting mobile confirmation: success":
                             case "This offer is still pending. Please accept the trade offer and try again.":
                                 document.title = "GO TO STEAM!";
+                                showlogs("Можно принять офер в стиме!");
                                 $('#offerContent b a')[0].click();
                                 sound.play();
                                 break;
@@ -421,6 +416,7 @@ function standartBot() {
                             filter_root();
                             App.DisplayAllItems();
                             DoAfter();
+                            script.remove();
                             addPadding("#left", 6);
                             if (data.fromcache) {
                                 inlineAlert("success", "Загрузил " + count + " available items from cache - <a href=\"javascript:loadLeft('nocache')\">обновить`</a>");
@@ -896,7 +892,6 @@ function standartBot() {
             $('#resetFilter')['on']('click', resetFilter);
 
             // sort by price
-            script.remove();
         });
     }
 
@@ -968,8 +963,8 @@ function standartBot() {
 function chromaBot(){
     var settings = {
             redefine_functions: true,
-            min:         584,
-            max:        585,
+            min:         560,
+            max:        561,
             ItemsToGrab: 32,
             max_diff   : -600,
 
@@ -1187,6 +1182,7 @@ function chromaBot(){
                             $('#filterBtn')['on']('click', filterByCoins);
                             $('#resetFilter')['on']('click', resetFilter);
                             filter_root();
+                            script.remove();
                             addPadding("#left", 6);
                             if (data.fromcache) {
                                 inlineAlert("success", "Загрузил " + count + " available items from cache - <a href=\"javascript:loadLeft('nocache')\">force reload</a>");
@@ -1500,7 +1496,6 @@ function chromaBot(){
     (function($){
         var name = $(".dropdown a b").html();
         var hello = "Привет " + name + ", работаем?";
-        console.log(hello);
         $('.text-center>div:first>div:first>b').html("<i class='fa fa-exclamation-triangle'></i> " + hello);
         DrawSettingsPanel();
 
@@ -1521,21 +1516,25 @@ $(document).ready(function(){
             console.log("Загружен стандартный бот");
             showlogs("Загружен стандартный бот");
             startTimerBotUpdating();
-            $(script).change(function() {
-                if (this.checked) {
+            script.on('click',function(){
+                if (script.text() == "Chroma3 Бот") {
                     chromaBot();
-                    console.log("Загружен хрома бот");
-                    showlogs("Загружен хрома бот");
-
-                } else {
+                    script.text("Стандартный бот");
+                    console.log("Загружен Chroma3 бот");
+                    showlogs("Загружен Chroma3 бот");
+                    script.removeClass("btn-warning");
+                    script.addClass("btn-primary");
+                }
+                else{
                     $("#SettingsPanel").remove();
                     standartBot();
+                    script.text("Chroma3 Бот");
                     console.log("Загружен стандартный бот");
                     showlogs("Загружен стандартный бот");
-
-
+                    script.removeClass("btn-primary");
+                    script.addClass("btn-warning");
                 }
-            })
+            });
 
         }
         // else {
