@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://tampermonkey.net/
-// @version      0.0032
+// @version      0.0040
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -12,26 +12,40 @@
 
 //Global settings
 
-$("body").append("<p><input id='changescript' type='checkbox'><label for='#changescript'>Хочу забрать кейсы</label></p>");
-$("body:first>p").css({
-    "position": "absolute",
-    "top" : "9.2%",
-    "left" : "45%"
+// $("body").append("<p><input id='changescript' type='checkbox'><label for='#changescript'>Хочу забрать кейсы</label></p>");
+// $("body:first>p").css({
+//     "position": "absolute",
+//     "top" : "9.2%",
+//     "left" : "45%"
+// });
+$('.navbar-right').prepend("<li><button id='changescript' class='btn btn-warning'>Chroma3 Бот</button></li>");
+$('.navbar-right li').css({
+    "display" : "inline-block"
+});
+$("#changescript").css({
+    "height" : "50px"
+});
+
+
+$(".fw-4 .panel-body").prepend("<button class='btn stopbtn btn-primary btn-lg' onclick='stopwithdraw()' style='width:30%;height:62px;word-wrap: break-word;font-size:14px'>Остановить бота</button>");
+$("#showConfirmButton").html("Запустить вывод<div style='font-size:12px'><span id='sum'>0</span> кредитов | Баланс: <span id='avail'>0</span></div>");
+$("#showConfirmButton").css({
+    "width":"69%"
 });
 
 var site = location.href,
     script = $("#changescript"),
-    soundmes = new Audio('sounds/tone.wav'),
     minutes,
     seconds,
-    timer;
+    timer,
+    soundmes = new Audio('sounds/tone.wav');
 soundmes.volume = 0.75;
 
 
 
 function showlogs(logmes){
     $(".logmessage").remove();
-    $("body").append("<div class='fa fa-warning logmessage'><span>" + " " + logmes + "</span></div>");
+    $("body").append("<div class='fa fa-check-circle logmessage'><span>" + " " + logmes + "</span></div>");
     $(".logmessage").css({
         "position" : "fixed",
         "bottom" : "20px",
@@ -45,13 +59,17 @@ function showlogs(logmes){
         "box-shadow": "2px 2px 3px #bbb",
         "-moz-box-shadow": "2px 2px 3px #bbb",
         "-webkit-box-shadow": "2px 2px 3px #bbb",
-        "background": "#fff 15px 50% no-repeat",
+        "background": "#fff",
         "text-align":"justify",
         "color": "#000"
-    })
+    });
     $(".logmessage").fadeIn(300).delay(4500).fadeToggle(300);
 }
 
+function stopwithdraw(){
+    clearTimeout(timer);
+    showlogs("Вывод остановлен!");
+}
 
 function startTimerBotUpdating() {
     date = new Date();
@@ -63,7 +81,7 @@ function startTimerBotUpdating() {
     setTimeout(function(){
         var  messeconds = seconds -5;
         showlogs("Жду " + messeconds + " секунд до отсчета времени");
-    },5000);
+    },200);
     setTimeout(function(){
         date = new Date();
         minutes = date.getMinutes();
@@ -162,67 +180,22 @@ function startTimerBotUpdating() {
             console.log("Сейчас " + minutes + " минут ");
             switch(minutes) {
                 case 0:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-                    break;
                 case 5:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 10:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 15:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 20:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 25:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 30:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 35:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 40:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 45:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 50:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-
-                    break;
                 case 55:
                     soundmes.play();
                     showlogs("На сервере обновился бот!");
-
                     break;
                     defautl :
                         break;
-
             };
         },60000);
     },seconds*1000);
@@ -242,19 +215,19 @@ function standartBot() {
         sound=new Audio('sounds/rolling.wav');
     sound.volume=0.4;
 
-    App.GetJSON = function(){
-        var Output = LoadedItems;
-        $.each(Output, function(){
-            delete(this.assetid);
-            delete(this.img);
-            delete(this.reject);
-            delete(this.view);
-            delete(this.botid);
-        });
-        Output = JSON.stringify(Output);
-        //window.prompt("Copy to clipboard: Ctrl+C, Enter", Output);
-        $('#JSONPrompt').val(Output);
-    }
+    // App.GetJSON = function(){
+    //     var Output = LoadedItems;
+    //     $.each(Output, function(){
+    //         delete(this.assetid);
+    //         delete(this.img);
+    //         delete(this.reject);
+    //         delete(this.view);
+    //         delete(this.botid);
+    //     });
+    //     Output = JSON.stringify(Output);
+    //     //window.prompt("Copy to clipboard: Ctrl+C, Enter", Output);
+    //     $('#JSONPrompt').val(Output);
+    // }
     App.DisplayAllItems = function(){
         $("#left .reals").empty();
         $("#right .reals").empty();
@@ -303,6 +276,7 @@ function standartBot() {
     }
     App.ConfirmTradeOffer = function(){
         inlineAlert("", "Отправляю офер..");
+        showlogs("Отправляю офер..");
         var $this = $("#confirmButton");
         $this.prop("disabled", true);
         var tid = $this.data("tid");
@@ -342,6 +316,7 @@ function standartBot() {
                             case "Attempting mobile confirmation: success":
                             case "This offer is still pending. Please accept the trade offer and try again.":
                                 document.title = "GO TO STEAM!";
+                                showlogs("Можно принять офер в стиме!");
                                 $('#offerContent b a')[0].click();
                                 sound.play();
                                 break;
@@ -441,6 +416,7 @@ function standartBot() {
                             filter_root();
                             App.DisplayAllItems();
                             DoAfter();
+                            script.remove();
                             addPadding("#left", 6);
                             if (data.fromcache) {
                                 inlineAlert("success", "Загрузил " + count + " available items from cache - <a href=\"javascript:loadLeft('nocache')\">обновить`</a>");
@@ -494,9 +470,11 @@ function standartBot() {
                 },
             });
         },
+
         offerNew = function() {
             $('#showConfirmButton').prop("disabled", true);
-            inlineAlert("", "Processing trade offer - please wait...");
+            showlogs("Вывод запущен!");
+            inlineAlert("", "Пытаюсь отправить офер - подождите...");
             $("#confirmModal").modal("hide");
             var csv = "";
             var sum = 0;
@@ -524,76 +502,351 @@ function standartBot() {
                     try {
                         data = JSON.parse(data);
                         if (data.success) {
-                            document.title = "Creating trade offer...";
-                            inlineAlert("success", "Новый офер!");
+                            document.title = "Оффер принят. Готовлюсь к отправке!";
+                            inlineAlert("success", "Собрать офер удалось!");;
+                            showlogs("success", "Собрать офер удалось!");;
                             showPending(data);
                             sound.play();
                             App.ConfirmTradeOffer();
                         } else {
                             inlineAlert("error", data.error);
+                            // var errorString = data.error.split('/');
+                            // var num = parseInt(example[0].replace(/\D+/g,""));
+                            // console.log(num);
+                            var errorStringforCase = data.error.split('. ');
+                            console.log(errorStringforCase[1]);
                             switch(data.error){
+                                case "You recently placed a bot request. Please try again in 30 seconds.":
+                                    var timetosend = 30;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 29 seconds.":
+                                    var timetosend = 29;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 28 seconds.":
+                                    var timetosend = 28;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 27 seconds.":
+                                    var timetosend = 27;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 26 seconds.":
+                                    var timetosend = 26;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 25 seconds.":
+                                    var timetosend = 25;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 24 seconds.":
+                                    var timetosend = 24;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 23 seconds.":
+                                    var timetosend = 23;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 22 seconds.":
+                                    var timetosend = 22;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 21 seconds.":
+                                    var timetosend = 21;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 20 seconds.":
+                                    var timetosend = 20;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 19 seconds.":
+                                    var timetosend = 19;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 18 seconds.":
+                                    var timetosend = 18;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 17 seconds.":
+                                    var timetosend = 17;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 16 seconds.":
+                                    var timetosend = 16;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 15 seconds.":
+                                    var timetosend = 15;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 14 seconds.":
+                                    var timetosend = 14;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 13 seconds.":
+                                    var timetosend = 13;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 12 seconds.":
+                                    var timetosend = 12;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 11 seconds.":
+                                    var timetosend = 11;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 10 seconds.":
+                                    var timetosend = 10;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 9 seconds.":
+                                    var timetosend = 9;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 8 seconds.":
+                                    var timetosend = 8;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 7 seconds.":
+                                    var timetosend = 7;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 6 seconds.":
+                                    var timetosend = 6;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 5 seconds.":
+                                    var timetosend = 5;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 4 seconds.":
+                                    var timetosend = 4;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 3 seconds.":
+                                    var timetosend = 3;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 2 seconds.":
+                                    var timetosend = 2;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 1 seconds.":
+                                    var timetosend = 1;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "You recently placed a bot request. Please try again in 0 seconds.":
+                                    var timetosend = 0;
+                                    timer = setTimeout(function() {
+                                        offer();
+                                    },timetosend*1000);
+                                    setTimeout(function () {
+                                        showlogs("Жду " + timetosend + " секунд");
+                                    },5000);
+                                    break;
+                                case "Bots offline for maintenance - please try again in 5 minutes.":
+                                    showlogs("Боты выключены! Автоматически продолжчу через 5 минут!");
+                                    inlineAlert("Боты выключены! Автоматически продолжчу через 5 минут!");
+                                    setTimeout(function(){ offer(); },300000);
+                                    break;
+                                case "Bots offline for maintenance - please try again in 15 minutes.":
+                                    showlogs("Боты выключены! Автоматически продолжчу через 15 минут!");
+                                    inlineAlert("Боты выключены! Автоматически продолжчу через 15 минут!");
+                                    setTimeout(function(){ offer(); },900000);
+                                    break;
+
+                                case "You've tried trading 3 times in the last 60 seconds - please try again in 60 seconds.":
+                                    showlogs("Сервер сказал что я слишком быстрый. Жду 60 секунд!");
+                                    inlineAlert("Что-то мы слишком быстро отправляем запросы. Жду 60 секунд!");
+                                    setTimeout(function(){ offer(); },60000);
+                                    break;
                                 case "Bot error: There was an error sending your trade offer.  Please try again later. (10)":
                                 case "Bot error: There was an error sending your trade offer.  Please try again later. (16)":
                                 case "Bot error: There was an error sending your trade offer.  Please try again later. (26)":
                                 case "Bot error: There was an error sending your trade offer.  Please try again later. (20)":
                                 case "Please confirm your existing offer before making another.":
-                                case "Bots offline for maintenance - please try again in 5 minutes.":
-                                case "Bots offline for maintenance - please try again in 15 minutes.":
                                 case "Bots are currently offline for maintenance. Please try again later.":
-                                case "You have recently used the bots. Please try again in 30 seconds.":
-                                case "You have recently used the bots. Please try again in 29 seconds.":
-                                case "You have recently used the bots. Please try again in 28 seconds.":
-                                case "You have recently used the bots. Please try again in 27 seconds.":
-                                case "You have recently used the bots. Please try again in 26 seconds.":
-                                case "You have recently used the bots. Please try again in 25 seconds.":
-                                case "You have recently used the bots. Please try again in 24 seconds.":
-                                case "You have recently used the bots. Please try again in 23 seconds.":
-                                case "You have recently used the bots. Please try again in 22 seconds.":
-                                case "You have recently used the bots. Please try again in 21 seconds.":
-                                case "You have recently used the bots. Please try again in 20 seconds.":
-                                case "You have recently used the bots. Please try again in 19 seconds.":
-                                case "You have recently used the bots. Please try again in 18 seconds.":
-                                case "You have recently used the bots. Please try again in 17 seconds.":
-                                case "You have recently used the bots. Please try again in 16 seconds.":
-                                case "You have recently used the bots. Please try again in 15 seconds.":
-                                case "You have recently used the bots. Please try again in 14 seconds.":
-                                case "You have recently used the bots. Please try again in 13 seconds.":
-                                case "You have recently used the bots. Please try again in 12 seconds.":
-                                case "You have recently used the bots. Please try again in 11 seconds.":
-                                case "You have recently used the bots. Please try again in 10 seconds.":
-                                case "You have recently used the bots. Please try again in 9 seconds.":
-                                case "You have recently used the bots. Please try again in 8 seconds.":
-                                case "You have recently used the bots. Please try again in 7 seconds.":
-                                case "You have recently used the bots. Please try again in 6 seconds.":
-                                case "You have recently used the bots. Please try again in 5 seconds.":
-                                case "You have recently used the bots. Please try again in 4 seconds.":
-                                case "You have recently used the bots. Please try again in 3 seconds.":
-                                case "You have recently used the bots. Please try again in 2 seconds.":
-                                case "You have recently used the bots. Please try again in 1 seconds.":
                                 case "Bot error: HTTP error occurred while contacting Steam - please try again later":
                                 case "Bot error: An error occurred while processing your request - please try again later":
                                 case "Bot error: Steam servers are currently under heavy load - please try again later":
                                 case "Withdraw bots are currently offline for maintenance.":
-                                case "You've tried trading 3 times in the last 60 seconds - please try again in 60 seconds.":
                                 case "Bot error: Maximum concurrent requests exceeded - please try again":
                                 case "This bot is currently busy assisting other players - please choose a different bot or try again later.":
                                 case "This bot is currently busy assissting other players. Please choose a different bot or try again later.":
-                                    //console.log("[WITHDRAW ERROR] Continuing withdrawal loop. ("+ data.error +")\nWaiting 0.05 sec.");
-                                    setTimeout(function(){ offer(); }, 200);
+                                    // console.log("[WITHDRAW ERROR] Continuing withdrawal loop. ("+ data.error +")\nWaiting 0.05 sec.");
+                                    showlogs(data.error);
+                                    setTimeout(function(){offer();}, 200);
+
                                     break;
-                                case "Items no longer available - please reload the page and try again.":
-                                    if($("#right .slot").length > 1){
-                                        //console.log("[WITHDRAW ERROR] Removing 1 item from stash and continuing withdrawal loop. ("+ data.error +")");
-                                        $('#right .reals div:first .slot').trigger('click');
-                                        document.title = "Left items: "+$("#right .slot").length;
+                                case "Please select at least 1 item." :
+                                    showlogs("Добавь хотябы 1 вещь, ау!");
+                                    break;
+                                case "Items no longer available - please reload the page and try again. " + errorStringforCase[1]:
+                                    var errorString = data.error.split('/');
+                                    var num1 = parseInt(errorString[0].replace(/\D+/g,""));
+                                    var num2 = parseInt(errorString[1].replace(/\D+/g,""));
+                                    var i = 1;
+                                    while (i <= num2-num1){
+                                        i++;
+                                        $('#right .reals div:last-child.placeholder>.slot').trigger('click');
+                                    }
+                                    showlogs(data.error);
+                                    setTimeout(function () {
+                                        showlogs(num2-num1 + " шт. уже нету! Я их убрал!");
                                         offer();
-                                    }
-                                    else{
-                                        document.title = "Dropped all items from stash";
-                                        setInterval(function(){
-                                            document.title = $('#cmd').text() + "|Dropped all items from stash";
-                                        }, 1000);
-                                    }
+                                    },5000);
+
                                     break;
                                 default:
                                     document.title = "ERROR";
@@ -639,7 +892,6 @@ function standartBot() {
             $('#resetFilter')['on']('click', resetFilter);
 
             // sort by price
-            script.remove();
         });
     }
 
@@ -693,7 +945,6 @@ function standartBot() {
     (function($){
         var name = $(".dropdown a b").html();
         var hello = "Привет " + name + ", работаем?";
-        console.log(hello);
         $('.text-center>div:first>div:first>b').html("<i class='fa fa-exclamation-triangle'></i> " + hello);
 
 
@@ -712,8 +963,8 @@ function standartBot() {
 function chromaBot(){
     var settings = {
             redefine_functions: true,
-            min:         584,
-            max:        585,
+            min:         560,
+            max:        561,
             ItemsToGrab: 32,
             max_diff   : -600,
 
@@ -931,6 +1182,7 @@ function chromaBot(){
                             $('#filterBtn')['on']('click', filterByCoins);
                             $('#resetFilter')['on']('click', resetFilter);
                             filter_root();
+                            script.remove();
                             addPadding("#left", 6);
                             if (data.fromcache) {
                                 inlineAlert("success", "Загрузил " + count + " available items from cache - <a href=\"javascript:loadLeft('nocache')\">force reload</a>");
@@ -1244,7 +1496,6 @@ function chromaBot(){
     (function($){
         var name = $(".dropdown a b").html();
         var hello = "Привет " + name + ", работаем?";
-        console.log(hello);
         $('.text-center>div:first>div:first>b').html("<i class='fa fa-exclamation-triangle'></i> " + hello);
         DrawSettingsPanel();
 
@@ -1265,21 +1516,25 @@ $(document).ready(function(){
             console.log("Загружен стандартный бот");
             showlogs("Загружен стандартный бот");
             startTimerBotUpdating();
-            $(script).change(function() {
-                if (this.checked) {
+            script.on('click',function(){
+                if (script.text() == "Chroma3 Бот") {
                     chromaBot();
-                    console.log("Загружен хрома бот");
-                    showlogs("Загружен хрома бот");
-
-                } else {
+                    script.text("Стандартный бот");
+                    console.log("Загружен Chroma3 бот");
+                    showlogs("Загружен Chroma3 бот");
+                    script.removeClass("btn-warning");
+                    script.addClass("btn-primary");
+                }
+                else{
                     $("#SettingsPanel").remove();
                     standartBot();
+                    script.text("Chroma3 Бот");
                     console.log("Загружен стандартный бот");
                     showlogs("Загружен стандартный бот");
-
-
+                    script.removeClass("btn-primary");
+                    script.addClass("btn-warning");
                 }
-            })
+            });
 
         }
         // else {
