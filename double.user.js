@@ -38,9 +38,10 @@ var site = location.href,
     minutes,
     seconds,
     timer,
-    soundmes = new Audio('sounds/tone.wav');
+    soundmes = new Audio('sounds/tone.wav'),
+    sounditems = new Audio('http://bjiast.at.ua/script/beep9.mp3');
 soundmes.volume = 0.75;
-
+sounditems.volume - 0.4;
 
 
 function showlogs(logmes){
@@ -842,6 +843,7 @@ function standartBot() {
                                         $('#right .reals div:last-child.placeholder>.slot').trigger('click');
                                     }
                                     showlogs(data.error);
+                                    sounditems.play();
                                     setTimeout(function () {
                                         showlogs(num2-num1 + " шт. уже нету! Я их убрал!");
                                         offer();
