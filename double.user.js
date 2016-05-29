@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://tampermonkey.net/
-// @version      0.0042
+// @version      0.0050
 // @description  try to take over the world!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -12,12 +12,6 @@
 
 //Global settings
 
-// $("body").append("<p><input id='changescript' type='checkbox'><label for='#changescript'>Хочу забрать кейсы</label></p>");
-// $("body:first>p").css({
-//     "position": "absolute",
-//     "top" : "9.2%",
-//     "left" : "45%"
-// });
 $('.navbar-right').prepend("<li><button id='changescript' class='btn btn-warning'>Chroma3 Бот</button></li>");
 $('.navbar-right li').css({
     "display" : "inline-block"
@@ -38,10 +32,11 @@ var site = location.href,
     minutes,
     seconds,
     timer,
+    remitems,
     soundmes = new Audio('sounds/tone.wav'),
     sounditems = new Audio('http://bjiast.at.ua/script/beep9.mp3');
 soundmes.volume = 0.75;
-sounditems.volume - 0.4;
+sounditems.volume - 0.1;
 
 
 function showlogs(logmes){
@@ -512,11 +507,7 @@ function standartBot() {
                             App.ConfirmTradeOffer();
                         } else {
                             inlineAlert("error", data.error);
-                            // var errorString = data.error.split('/');
-                            // var num = parseInt(example[0].replace(/\D+/g,""));
-                            // console.log(num);
                             var errorStringforCase = data.error.split('. ');
-                            console.log(errorStringforCase[1]);
                             switch(data.error){
                                 case "You recently placed a bot request. Please try again in 30 seconds.":
                                     var timetosend = 30;
@@ -845,7 +836,7 @@ function standartBot() {
                                     }
                                     showlogs(data.error);
                                     sounditems.play();
-                               var  remitems =  setTimeout(function () {
+                                 remitems = setTimeout(function () {
                                         showlogs(num2-num1 + " шт. уже нету! Я их убрал!");
                                         offer();
                                     },5000);
