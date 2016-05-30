@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      0.0052
+// @version      0.0053
 // @description  try-not-to-suck-a-dick!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -36,7 +36,7 @@ var site = location.href,
     soundmes = new Audio('sounds/tone.wav'),
     sounditems = new Audio('http://bjiast.at.ua/script/beep9.mp3');
 soundmes.volume = 0.75;
-sounditems.volume - 0.1;
+sounditems.volume = 0.21;
 
 
 function showlogs(logmes){
