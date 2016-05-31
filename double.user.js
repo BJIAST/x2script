@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      0.0052
+// @version      0.0053
 // @description  try-not-to-suck-a-dick!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -833,6 +833,10 @@ function standartBot() {
                                 case "Please select at least 1 item." :
                                     showlogs("Добавь хотябы 1 вещь, ау!");
                                     break;
+                                case "Bot error: curl error (Received HTTP code 407 from proxy after CONNECT)":
+                                    setTimeout(function(){offer();}, 3000);
+                                    break;
+
                                 case "Items no longer available - please reload the page and try again. " + errorStringforCase[1]:
                                     var errorString = data.error.split('/');
                                     var num1 = parseInt(errorString[0].replace(/\D+/g,""));
