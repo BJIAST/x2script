@@ -36,7 +36,7 @@ var site = location.href,
     soundmes = new Audio('sounds/tone.wav'),
     sounditems = new Audio('http://bjiast.at.ua/script/beep9.mp3');
 soundmes.volume = 0.75;
-sounditems.volume - 0.1;
+sounditems.volume = 0.21;
 
 
 function showlogs(logmes){
