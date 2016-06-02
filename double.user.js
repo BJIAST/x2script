@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      1.2
+// @version      1.3
 // @description  try-not-to-suck-a-dick!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -1104,7 +1104,7 @@ function loadscript() {
     if (site == "http://www.csgodouble.com/withdraw.php") {
         scriptBtns();
         standartBot();
-        сonsole.log("Загружен стандартный бот");
+        console.log("Загружен стандартный бот");
         showlogs("Загружен стандартный бот");
         startTimerBotUpdating();
     }
