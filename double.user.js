@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      1.1
+// @version      1.2
 // @description  try-not-to-suck-a-dick!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -145,41 +145,6 @@ function startTimerBotUpdating() {
 }
 
 //Global settings
-
-function bubabirth() {
-    var x = Math.random()*(8-0)+0;
-    x = Math.floor(x);
-    console.log(x);
-    switch(x){
-        case 0:
-            chromemes("Буба псих!");
-            break;
-        case 1:
-            chromemes("Буба тащи пенсию!");
-            break;
-        case 2:
-            chromemes("Буба где пицца?!");
-            break;
-        case 3:
-            chromemes("Где бабки, буба?");
-            break;
-        case 4:
-            chromemes("Бубе 62!! Несите вставную челюсть!");
-            break;
-        case 5:
-            chromemes("Вива ля пизза!");
-            break;
-        case 6:
-            chromemes("Буба, е*ать ты старый!!");
-            break;
-        default:
-            chromemes("С Днюхой жи!");
-            break;
-
-    }
-    setTimeout(function(){mailNotification.close();},3000);
-
-}
 
 function standartBot() {
     var settings = {
@@ -1139,8 +1104,7 @@ function loadscript() {
     if (site == "http://www.csgodouble.com/withdraw.php") {
         scriptBtns();
         standartBot();
-        bubabirth();
-        console.log("Загружен стандартный бот");
+        сonsole.log("Загружен стандартный бот");
         showlogs("Загружен стандартный бот");
         startTimerBotUpdating();
     }
