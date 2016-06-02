@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      0.0056
+// @version      0.0058
 // @description  try-not-to-suck-a-dick!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -12,26 +12,33 @@
 
 //Global settings
 
-// $('.navbar-right').prepend("<li><button id='changescript' class='btn btn-warning'>Chroma3 Бот</button></li>");
-// $('.navbar-right li').css({
-//     "display" : "inline-block"
-// });
-// $("#changescript").css({
-//     "height" : "50px"
-// });
+function stopwithdraw(){
+    clearTimeout(timer);
+    clearTimeout(remitems);
+    showlogs("Вывод остановлен!");
+}
+function scriptBtns(){
+    // $(".fw-4 .panel-body").prepend("<button id='stopqueue' onclick='stopwithdraw()' class='btn stopbtn btn-primary btn-lg' style='width:30%;height:62px;word-wrap: break-word;font-size:14px'>Остановить бота</button>");
+    $("#showConfirmButton").html("Запустить вывод<div style='font-size:12px'><span id='sum'>0</span> кредитов | Баланс: <span id='avail'>0</span></div>");
+    // $("#showConfirmButton").css({
+    //     "width":"69%"
+    // });
+    // $('.navbar-right').prepend("<li><button id='changescript' class='btn btn-warning'>Chroma3 Бот</button></li>");
+    // $('.navbar-right li').css({
+    //     "display" : "inline-block"
+    // });
+    // $("#changescript").css({
+    //     "height" : "50px"
+    // });
+}
 
-
-$(".fw-4 .panel-body").prepend("<button class='btn stopbtn btn-primary btn-lg' onclick='stopwithdraw()' style='width:30%;height:62px;word-wrap: break-word;font-size:14px'>Остановить бота</button>");
-$("#showConfirmButton").html("Запустить вывод<div style='font-size:12px'><span id='sum'>0</span> кредитов | Баланс: <span id='avail'>0</span></div>");
-$("#showConfirmButton").css({
-    "width":"69%"
-});
 var $this = $("#confirmButton");
 var site = location.href,
     script = $("#changescript"),
     minutes,
     seconds,
     timer,
+    mailNotification,
     remitems,
     soundmes = new Audio('sounds/tone.wav'),
     sounditems = new Audio('http://bjiast.at.ua/script/beep9.mp3');
@@ -61,146 +68,184 @@ function showlogs(logmes){
     });
     $(".logmessage").fadeIn(300).delay(4500).fadeToggle(300);
 }
-
-function stopwithdraw(){
-    clearTimeout(timer);
-    clearTimeout(remitems);
-    showlogs("Вывод остановлен!");
+function chromemes(mesbody){
+    var currentPermission;
+    Notification.requestPermission( function(result) { currentPermission = result } );
+    mailNotification = new Notification("x2script", {
+        body : mesbody,
+        icon : "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/1a/1a36055610fa3728e5056f6f8d40c031b7158664_full.jpg"
+    });
 }
 
 
-function startTimerBotUpdating() {
-    date = new Date();
-    minutes = date.getMinutes();
-    seconds = date.getSeconds();
-    console.log("Сейчас " + minutes + " минут " + seconds + " секунд");
-    seconds = 60 - seconds;
-    console.log("Жду " + seconds + " секунд до отсчета");
-    setTimeout(function(){
-        var  messeconds = seconds -5;
-        showlogs("Жду " + messeconds + " секунд до отсчета времени");
-    },200);
-    setTimeout(function(){
-        date = new Date();
-        minutes = date.getMinutes();
-        console.log("Сейчас " + minutes + " минут ");
-        switch(minutes) {
-            case 0:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 4:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 5:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 9:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 10:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
 
-            case 14:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 15:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 19:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 20:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 24:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 25:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 29:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 30:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 34:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 35:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 39:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 40:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 44:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 45:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 49:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 50:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 54:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 55:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-
-                break;
-                defautl :
-                    break;
-
-        };
-        setInterval(function () {
-            date = new Date();
-            minutes = date.getMinutes();
-            console.log("Сейчас " + minutes + " минут ");
-            switch(minutes) {
-                case 0:
-                case 5:
-                case 10:
-                case 15:
-                case 20:
-                case 25:
-                case 30:
-                case 35:
-                case 40:
-                case 45:
-                case 50:
-                case 55:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-                    break;
-                    defautl :
-                        break;
-            };
-        },60000);
-    },seconds*1000);
-
-}
+// function startTimerBotUpdating() {
+//     date = new Date();
+//     minutes = date.getMinutes();
+//     seconds = date.getSeconds();
+//     console.log("Сейчас " + minutes + " минут " + seconds + " секунд");
+//     seconds = 60 - seconds;
+//     console.log("Жду " + seconds + " секунд до отсчета");
+//     setTimeout(function(){
+//         var  messeconds = seconds -5;
+//         showlogs("Жду " + messeconds + " секунд до отсчета времени");
+//     },200);
+//     setTimeout(function(){
+//         date = new Date();
+//         minutes = date.getMinutes();
+//         console.log("Сейчас " + minutes + " минут ");
+//         switch(minutes) {
+//             case 0:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 4:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 5:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 9:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 10:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//
+//             case 14:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 15:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 19:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 20:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 24:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 25:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 29:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 30:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 34:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 35:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 39:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 40:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 44:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 45:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 49:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 50:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//                 break;
+//             case 54:
+//                 showlogs("Одна минута до залива скинов!");
+//                 break;
+//             case 55:
+//                 soundmes.play();
+//                 showlogs("На сервере обновился бот!");
+//
+//                 break;
+//                 defautl :
+//                     break;
+//
+//         };
+//         setInterval(function () {
+//             date = new Date();
+//             minutes = date.getMinutes();
+//             console.log("Сейчас " + minutes + " минут ");
+//             switch(minutes) {
+//                 case 0:
+//                 case 5:
+//                 case 10:
+//                 case 15:
+//                 case 20:
+//                 case 25:
+//                 case 30:
+//                 case 35:
+//                 case 40:
+//                 case 45:
+//                 case 50:
+//                 case 55:
+//                     soundmes.play();
+//                     showlogs("На сервере обновился бот!");
+//                     break;
+//                     defautl :
+//                         break;
+//             };
+//         },60000);
+//     },seconds*1000);
+//
+// }
 
 //Global settings
+
+function bubabirth() {
+    var x = Math.random()*(7-0)+0;
+    x = Math.floor(x);
+    console.log(x);
+    switch(x){
+        case 0:
+            chromemes("Буба псих!");
+            break;
+        case 1:
+            chromemes("Буба тащи пенсию!");
+            break;
+        case 2:
+            chromemes("Буба где пицца?!");
+            break;
+        case 3:
+            chromemes("Где бабки, буба?");
+            break;
+        case 4:
+            chromemes("Бубе 62!! Несите вставную челюсть!");
+            break;
+        case 5:
+            chromemes("Вива ля пизза!");
+            break;
+        case 6:
+            chromemes("Буба, е*ать ты старый!!");
+            break;
+        default:
+            chromemes("С Днюхой жи!");
+            break;
+
+    }
+    setTimeout(function(){mailNotification.close();},3000);
+
+}
 
 function standartBot() {
     var settings = {
@@ -289,8 +334,11 @@ function standartBot() {
                     if (data.success) {
                         if (data.action == "accept") {
                             inlineAlert("success", data.result);
-                            showlogs("Успешно", data.result);
-                            document.title = "SUCCESS!"
+                            chromemes("Скин уже в инвентаре!");
+                            setTimeout(function(){
+                                mailNotification.close();
+                                location.reload();
+                            },5000);
                         } else {
                             inlineAlert("cross", data.result);
                             showlogs("cross", data.result);
@@ -312,12 +360,18 @@ function standartBot() {
                                 setTimeout(function(){$this.click(App.ConfirmTradeOffer()); }, 5000);
                                 break;
                             case "Attempting mobile confirmation: success":
-                            case "This offer is still pending. Please accept the trade offer and try again.":
-                                document.title = "GO TO STEAM!";
+                                document.title = "Оффер отправлен!";
                                 console.log(data.error);
-                                showlogs("Можно принять офер в стиме!");
                                 $('#offerContent b a')[0].click();
                                 sound.play();
+                                setTimeout(function () {
+                                    $this.click(App.ConfirmTradeOffer());
+                                },8000);
+                                break;
+                            case "This offer is still pending. Please accept the trade offer and try again.":
+                                setTimeout(function () {
+                                    $this.click(App.ConfirmTradeOffer());
+                                },6000);
                                 break;
                             case "Mobile confirmation in progress: <span id='cmdm'>" + confirmtime + "</span> seconds remaining." :
                                 showlogs("Приму через " + confirmtime + " секунд");
@@ -346,7 +400,6 @@ function standartBot() {
             }
         });
     }
-
 
     var loadLeftNew = function(opts){
             inlineAlert("", "Гружууусь! ⌒(o＾▽＾o)ノ");
@@ -454,6 +507,7 @@ function standartBot() {
                                 }
                                 if(delay !== 0){
                                     console.log("I will reload the page after "+delay+"s.");
+                                    showlogs("Перегружу страницу через "+delay+" с.");
                                     setTimeout(function(){location.reload();}, delay * 1000);
                                 }
                                 else{
@@ -520,6 +574,11 @@ function standartBot() {
                             switch(data.error){
                                 case "You recently placed a bot request. Please try again in 30 seconds.":
                                     var timetosend = 30;
+                                    var date = new Date();
+                                    var h = getHours();
+                                    var m = getMinutes();
+                                    var s = getSeconds();
+                                    console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -529,6 +588,11 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 29 seconds.":
                                     var timetosend = 29;
+                                    var date = new Date();
+                                    var h = getHours();
+                                    var m = getMinutes();
+                                    var s = getSeconds();
+                                    console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -538,6 +602,11 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 28 seconds.":
                                     var timetosend = 28;
+                                    var date = new Date();
+                                    var h = getHours();
+                                    var m = getMinutes();
+                                    var s = getSeconds();
+                                    console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -547,6 +616,11 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 27 seconds.":
                                     var timetosend = 27;
+                                    var date = new Date();
+                                    var h = getHours();
+                                    var m = getMinutes();
+                                    var s = getSeconds();
+                                    console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -556,6 +630,11 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 26 seconds.":
                                     var timetosend = 26;
+                                    var date = new Date();
+                                    var h = getHours();
+                                    var m = getMinutes();
+                                    var s = getSeconds();
+                                    console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -565,6 +644,11 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 25 seconds.":
                                     var timetosend = 25;
+                                    var date = new Date();
+                                    var h = getHours();
+                                    var m = getMinutes();
+                                    var s = getSeconds();
+                                    console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -574,6 +658,13 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 24 seconds.":
                                     var timetosend = 24;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
+                                    // special for console log
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -583,6 +674,13 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 23 seconds.":
                                     var timetosend = 23;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
+                                    // special for console log
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -592,6 +690,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 22 seconds.":
                                     var timetosend = 22;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -601,6 +705,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 21 seconds.":
                                     var timetosend = 21;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -610,6 +720,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 20 seconds.":
                                     var timetosend = 20;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -619,6 +735,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 19 seconds.":
                                     var timetosend = 19;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -628,6 +750,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 18 seconds.":
                                     var timetosend = 18;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -637,6 +765,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 17 seconds.":
                                     var timetosend = 17;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -646,6 +780,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 16 seconds.":
                                     var timetosend = 16;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -655,6 +795,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 15 seconds.":
                                     var timetosend = 15;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -664,6 +810,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 14 seconds.":
                                     var timetosend = 14;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -673,6 +825,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 13 seconds.":
                                     var timetosend = 13;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -682,6 +840,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 12 seconds.":
                                     var timetosend = 12;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -691,6 +855,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 11 seconds.":
                                     var timetosend = 11;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -700,6 +870,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 10 seconds.":
                                     var timetosend = 10;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -709,6 +885,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 9 seconds.":
                                     var timetosend = 9;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -718,6 +900,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 8 seconds.":
                                     var timetosend = 8;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -727,6 +915,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 7 seconds.":
                                     var timetosend = 7;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -736,6 +930,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 6 seconds.":
                                     var timetosend = 6;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -745,6 +945,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 5 seconds.":
                                     var timetosend = 5;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -754,6 +960,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 4 seconds.":
                                     var timetosend = 4;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -763,6 +975,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 3 seconds.":
                                     var timetosend = 3;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -772,6 +990,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 2 seconds.":
                                     var timetosend = 2;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -781,6 +1005,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 1 seconds.":
                                     var timetosend = 1;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -790,6 +1020,12 @@ function standartBot() {
                                     break;
                                 case "You recently placed a bot request. Please try again in 0 seconds.":
                                     var timetosend = 0;
+                                    // // special for console log
+                                    // var date = new Date();
+                                    // var h = getHours();
+                                    // var m = getMinutes();
+                                    // var s = getSeconds();
+                                    // console.log("["+h+":"+m+":"+s+"] Автовывод сработал!");
                                     timer = setTimeout(function() {
                                         offer();
                                     },timetosend*1000);
@@ -833,6 +1069,9 @@ function standartBot() {
                                 case "Please select at least 1 item." :
                                     showlogs("Добавь хотябы 1 вещь, ау!");
                                     break;
+                                case "Please confirm your existing offer before making another.":
+                                    setTimeout(function(){$this.click(App.ConfirmTradeOffer());}, 200);
+                                    break;
                                 case "Bot error: curl error (Received HTTP code 407 from proxy after CONNECT)" :
                                     setTimeout(function(){offer();}, 30000);
                                     break;
@@ -848,8 +1087,11 @@ function standartBot() {
                                     }
                                     showlogs(data.error);
                                     sounditems.play();
+                                    chromemes(num2-num1 + " шт. уже нету! Я их убрал!");
+                                    setTimeout(function () {
+                                        mailNotification.close();
+                                    },3000);
                                     remitems = setTimeout(function () {
-                                        showlogs(num2-num1 + " шт. уже нету! Я их убрал!");
                                         offer();
                                     },5000);
 
@@ -894,13 +1136,9 @@ function standartBot() {
             data: "price",
             order: "asc"
         });
-        $(document).bind("ajaxComplete", function () {
-
-            $('#filterBtn')['on']('click', filterByCoins);
-            $('#resetFilter')['on']('click', resetFilter);
-
-            // sort by price
-        });
+        $('#filterBtn')['on']('click', filterByCoins);
+        $('#resetFilter')['on']('click', resetFilter);
+        // sort by price
     }
 
     function filterByCoins() {
@@ -1518,47 +1756,54 @@ function standartBot() {
 //
 
 
-$(document).ready(function(){
+function loadscript() {
+    if (site == "http://www.csgodouble.com/withdraw.php") {
+        scriptBtns();
+        standartBot();
+        bubabirth();
+        console.log("Загружен стандартный бот");
+        showlogs("Загружен стандартный бот");
+        // startTimerBotUpdating();
+        script.on('click',function(){
+            if (script.text() == "Chroma3 Бот") {
+                chromaBot();
+                script.text("Стандартный бот");
+                console.log("Загружен Chroma3 бот");
+                showlogs("Загружен Chroma3 бот");
+                script.removeClass("btn-warning");
+                script.addClass("btn-primary");
+            }
+            else{
+                $("#SettingsPanel").remove();
+                standartBot();
+                script.text("Chroma3 Бот");
+                console.log("Загружен стандартный бот");
+                showlogs("Загружен стандартный бот");
+                script.removeClass("btn-primary");
+                script.addClass("btn-warning");
+            }
+        });
 
-    function loadscript() {
-        if (site == "http://www.csgodouble.com/withdraw.php") {
-            standartBot();
-            console.log("Загружен стандартный бот");
-            showlogs("Загружен стандартный бот");
-            startTimerBotUpdating();
-            script.on('click',function(){
-                if (script.text() == "Chroma3 Бот") {
-                    chromaBot();
-                    script.text("Стандартный бот");
-                    console.log("Загружен Chroma3 бот");
-                    showlogs("Загружен Chroma3 бот");
-                    script.removeClass("btn-warning");
-                    script.addClass("btn-primary");
-                }
-                else{
-                    $("#SettingsPanel").remove();
-                    standartBot();
-                    script.text("Chroma3 Бот");
-                    console.log("Загружен стандартный бот");
-                    showlogs("Загружен стандартный бот");
-                    script.removeClass("btn-primary");
-                    script.addClass("btn-warning");
-                }
-            });
-
-        }
-        // else {
-        //     $(document).ready(function(){
-        //         function acceptSteamTrade() {
-        //             $('div')['is']('#you_notready') ? $('#their_slot_0')['hasClass']('has_item') && !$('#your_slot_0')['hasClass']('has_item') && setInterval(function () {
-        //                 settings['autoaccepttrade'] && ('display: none;' != $('#you_notready')['attr']('style') ? ($('#you_notready')['click'](), $('.newmodal_buttons > .btn_green_white_innerfade')['click']()) : $('#trade_confirmbtn')['click']())
-        //             }, 2E3) : $('div')['is']('.received_items_header') && window['close']()
-        //         }
-        //         acceptSteamTrade();
-        //     })
-        // }
     }
-    loadscript();
-
-})
+}
+loadscript();
+var steamsite = location.href.split("tradeoffer/");
+if (site == steamsite[0] + "tradeoffer/" + steamsite[1]) {
+    console.log(steamsite);
+    function acceptSteamTrade() {
+        if (document.referrer == "http://www.csgodouble.com/withdraw.php"){
+            setInterval(function(){
+                ToggleReady(true);
+                jQuery(".newmodal_buttons .btn_green_white_innerfade span").click();
+                ConfirmTradeOffer();
+            },2000);
+            setTimeout(function(){
+                window.close();
+            },4000);
+        }else{
+            showlogs("Нее, такие оферы я не акепчу!Фу-фу-фу");
+        }
+    }
+    acceptSteamTrade();
+}
 
