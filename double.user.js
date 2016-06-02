@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      1.0
+// @version      1.1
 // @description  try-not-to-suck-a-dick!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -95,49 +95,22 @@ function startTimerBotUpdating() {
         minutes = date.getMinutes();
         console.log("Сейчас " + minutes + " минут ");
         switch(minutes) {
-            case 0:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 6:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 7:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 19:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 20:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-
-            case 26:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 27:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 39:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 40:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 46:
-                showlogs("Одна минута до залива скинов!");
-                break;
-            case 47:
-                soundmes.play();
-                showlogs("На сервере обновился бот!");
-                break;
-            case 59:
-                showlogs("Одна минута до залива скинов!");
-                break;
+           case 3:
+           case 7:
+           case 13:
+           case 17:
+           case 23:
+           case 28:
+           case 33:
+           case 38:
+           case 42:
+           case 48:
+           case 53:
+           case 57:
+            soundmes.play();
+            chromemes("На сервере обновилась группа ботов!");
+            setTimeout(function(){mailNotification.close();},4000);
+            break;
             default :
                 break;
 
@@ -147,49 +120,22 @@ function startTimerBotUpdating() {
             minutes = date.getMinutes();
             console.log("Сейчас " + minutes + " минут ");
             switch(minutes) {
-                case 0:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-                    break;
-                case 6:
-                    showlogs("Одна минута до залива скинов!");
-                    break;
-                case 7:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-                    break;
-                case 19:
-                    showlogs("Одна минута до залива скинов!");
-                    break;
-                case 20:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-                    break;
-
-                case 26:
-                    showlogs("Одна минута до залива скинов!");
-                    break;
-                case 27:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-                    break;
-                case 39:
-                    showlogs("Одна минута до залива скинов!");
-                    break;
-                case 40:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-                    break;
-                case 46:
-                    showlogs("Одна минута до залива скинов!");
-                    break;
-                case 47:
-                    soundmes.play();
-                    showlogs("На сервере обновился бот!");
-                    break;
-                case 59:
-                    showlogs("Одна минута до залива скинов!");
-                    break;
+                 case 3:
+           case 7:
+           case 13:
+           case 17:
+           case 23:
+           case 28:
+           case 33:
+           case 38:
+           case 42:
+           case 48:
+           case 53:
+           case 57:
+            soundmes.play();
+            chromemes("На сервере обновилась группа ботов!");
+            setTimeout(function(){mailNotification.close();},4000);
+            break;
                 default :
                     break;
             };
