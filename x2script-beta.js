@@ -20,27 +20,18 @@
         };
 
         function x2style(){
-            $("body").css({
-                "background" : "#202120"
-            });
-            $(".panel-body").css({
-                "background" : "#cecece"
-            });
-            $(".bricks>.placeholder").hide();
-            $("#botFilter").css({
-                "width" : "100%"
-            });
-            $("#botFilter .btn ").css({
-                "width" : "50px",
-                "font-size" : "13px",
-                "margin" : "5px",
-                "padding" : "5px",
-                "float" : "left"
-            });
+            
             $("#botFilter").append("<div id='captcha'>");
             $(".norobots").appendTo("#captcha");
-
+        
         }
 
+        loadCSS = function(href) {
+            $("link")[4].disaled.true;
+            var cssLink = $("<link rel='stylesheet' type='text/css' href='"+href+"'>");
+            $("head").append(cssLink);
+        };
+
+        loadCSS("https://github.com/BJIAST/x2script/blob/x2beta/newstyle.css");
     });
 })();
