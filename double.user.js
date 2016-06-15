@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      1.316
+// @version      1.317
 // @description  try-not-to-suck-a-dick!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -73,7 +73,7 @@ function chromemes(mesbody){
     Notification.requestPermission( function(result) { currentPermission = result } );
     mailNotification = new Notification("x2script", {
         body : mesbody,
-        icon : "http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/1a/1a36055610fa3728e5056f6f8d40c031b7158664_full.jpg"
+        icon : "https://pp.vk.me/c7006/v7006357/55be/5_3HOIlmyuc.jpg"
     });
 }
 
@@ -95,18 +95,18 @@ function startTimerBotUpdating() {
         minutes = date.getMinutes();
         console.log("Сейчас " + minutes + " минут ");
         switch(minutes) {
-           case 3:
-           case 8:
-           case 13:
-           case 18:
-           case 23:
-           case 28:
-           case 33:
-           case 38:
-           case 43:
-           case 48:
-           case 53:
-           case 58:
+           case 2:
+           case 7:
+           case 12:
+           case 17:
+           case 22:
+           case 27:
+           case 32:
+           case 37:
+           case 42:
+           case 47:
+           case 52:
+           case 57:
             soundmes.play();
             chromemes("На сервере обновилась группа ботов!");
             setTimeout(function(){mailNotification.close();},4000);
@@ -120,18 +120,18 @@ function startTimerBotUpdating() {
             minutes = date.getMinutes();
             console.log("Сейчас " + minutes + " минут ");
             switch(minutes) {
-          case 3:
-           case 8:
-           case 13:
-           case 18:
-           case 23:
-           case 28:
-           case 33:
-           case 38:
-           case 43:
-           case 48:
-           case 53:
-           case 58:
+           case 2:
+           case 7:
+           case 12:
+           case 17:
+           case 22:
+           case 27:
+           case 32:
+           case 37:
+           case 42:
+           case 47:
+           case 52:
+           case 57:
             soundmes.play();
             chromemes("На сервере обновилась группа ботов!");
             setTimeout(function(){mailNotification.close();},4000);
@@ -236,7 +236,9 @@ function standartBot() {
                             chromemes("Скин уже в инвентаре!");
                             setTimeout(function(){
                                 mailNotification.close();
-                                location.reload();
+                                if(confirm("Перегрузить страницу?")){
+                                    location.reload();
+                                }
                             },5000);
                         } else {
                             inlineAlert("cross", data.result);
