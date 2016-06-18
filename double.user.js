@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      1.319
+// @version      1.3191
 // @description  try-not-to-suck-a-dick!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -95,18 +95,18 @@ function startTimerBotUpdating() {
         minutes = date.getMinutes();
         console.log("Сейчас " + minutes + " минут ");
         switch(minutes) {
-           case 0:
-           case 5:
-           case 10:
-           case 15:
-           case 20:
-           case 25:
-           case 30:
-           case 35:
-           case 40:
-           case 45:
-           case 50:
-           case 55:
+           case 2:
+           case 7:
+           case 12:
+           case 17:
+           case 22:
+           case 27:
+           case 32:
+           case 37:
+           case 42:
+           case 47:
+           case 52:
+           case 57:
             soundmes.play();
             chromemes("На сервере обновилась группа ботов!");
             setTimeout(function(){mailNotification.close();},4000);
@@ -120,18 +120,18 @@ function startTimerBotUpdating() {
             minutes = date.getMinutes();
             console.log("Сейчас " + minutes + " минут ");
             switch(minutes) {
-           case 0:
-           case 5:
-           case 10:
-           case 15:
-           case 20:
-           case 25:
-           case 30:
-           case 35:
-           case 40:
-           case 45:
-           case 50:
-           case 55:
+           case 2:
+           case 7:
+           case 12:
+           case 17:
+           case 22:
+           case 27:
+           case 32:
+           case 37:
+           case 42:
+           case 47:
+           case 52:
+           case 57:
             soundmes.play();
             chromemes("На сервере обновилась группа ботов!");
             setTimeout(function(){mailNotification.close();},4000);
