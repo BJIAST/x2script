@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         x2script
 // @namespace    http://bjiast.xyz/
-// @version      1.3194
+// @version      1.3195
 // @description  try to hard!
 // @author       BJIAST
 // @match        http://www.csgodouble.com/withdraw.php
@@ -95,7 +95,7 @@ function startTimerBotUpdating() {
         minutes = date.getMinutes();
         console.log("Сейчас " + minutes + " минут ");
         switch(minutes) {
-           case 3
+           case 3:
            case 8:
            case 13:
            case 18:
